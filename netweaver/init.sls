@@ -6,3 +6,4 @@ include:
   - netweaver.install_db
   - netweaver.install_pas
   - netweaver.install_aas
+  - netweaver.install_cal
