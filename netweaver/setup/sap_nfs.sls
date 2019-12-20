@@ -1,7 +1,12 @@
 {%- from "netweaver/map.jinja" import netweaver with context -%}
 {% set host = grains['host'] %}
 
-mount_sapmnt:
+{% for node in netweaver.nodes if host == node.host and node.use_nfs|default(True) %}
+
+{% set instance = '{:0>2}'.format(node.instance) %}
+{% set instance_name =  node.sid~'_'~instance %}
+
+mount_sapmnt_{{ instance_name }}:
   mount.mounted:
     - name: /sapmnt
     - device: {{ netweaver.sapmnt_inst_media }}/sapmnt
@@ -10,11 +15,6 @@ mount_sapmnt:
     - persist: True
     - opts:
       - defaults
-
-{% for node in netweaver.nodes if host == node.host %}
-
-{% set instance = '{:0>2}'.format(node.instance) %}
-{% set instance_name =  node.sid~'_'~instance %}
 
 mount_usersapsys_{{ instance_name }}:
   mount.mounted:

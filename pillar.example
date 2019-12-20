@@ -60,6 +60,8 @@ netweaver:
       root_password: linux
       shared_disk_dev: /dev/sbd
       init_shared_disk: True
+      # use_nfs is used to enable the nfs share usage for /sapmnt and /usr/sap/{sid}/SYS folders
+      #use_nfs: False
       sap_instance: ascs
 
     - host: hacert02
