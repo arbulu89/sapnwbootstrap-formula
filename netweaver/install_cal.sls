@@ -6,7 +6,7 @@
 install_sap_cal:
   sapcal.is_installed:
     - name: {{ node.cal_folder }}
-    - password: {{ netweaver.sid_adm_password|default(netweaver.master_password) }}
+    - sid_adm_password: {{ netweaver.sid_adm_password|default(netweaver.master_password) }}
     - root_user: {{ node.root_user }}
     - root_password: {{ node.root_password }}
     - force: {{ node.force }}
